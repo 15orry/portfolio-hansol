@@ -1,0 +1,246 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Noto+Sans+KR:wght@100;300;400&display=swap');
+
+/* font-family: 'Cormorant Garamond', serif;
+font-family: 'Frank Ruhl Libre', serif;
+font-family: 'Noto Sans KR', sans-serif; */
+
+*{box-sizing: border-box; font-family: 'Frank Ruhl Libre', 'Noto Sans KR', sans-serif;}
+html, body{margin: 0; padding: 0;}
+h1, h2, h3, h4, h5, h6, p{margin: 0;}
+ul, ol{margin: 0; padding: 0; list-style: none;}
+a, a:hover{text-decoration: none;}
+
+body{background-color: #000; color: #ddd;}
+.wrap{
+    position: fixed;
+    width: 100%; height: 100vh;
+    perspective: 5000px;
+    overflow: hidden;
+}
+.wrap .bg_video{
+    position: absolute;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.75;
+}
+.bg_img{}
+.bg_img img{width: 100%; }
+
+#circling{
+    width: 90%;
+    height: 900px;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+    animation: circleAni 40s linear infinite;
+}
+@keyframes circleAni{
+    0%{transform: translate(-50%, -50%) rotateX(0deg);}
+    0%{transform: translate(-50%, -50%) rotateX(360deg);}
+}
+
+#circling article{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    backface-visibility: hidden;
+    transform: rotateX(calc(45deg * var(--i))) translateZ(-1100px);
+    transition-delay: transform 2s;
+}
+#circling article:hover:after{
+    content: "";
+    display: block;
+    width: 100%; height: 100%;
+    animation: bgBlurFx 1.5s;
+    position: absolute;
+    top: 0; left: 0;
+    transform-origin: 50% 50%;
+    z-index: -2;
+}
+@keyframes bgBlurFx {
+    0%{background-color: #cdf; opacity: 0.85;}
+    100%{background-color: #cdf; opacity: 0;}
+}
+#circling article h1{
+    position: absolute;
+    top: 10px; left: 10px;
+    font-size: 24px;
+    opacity: 1;
+    transition: transform 0.5s, opacity 0.5s;
+}
+#circling article:hover h1{
+    transform: translateX(-140%);
+    opacity: 1;
+}
+#circling article .inner{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+}
+/* #circling article .inner:before{
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 400%; height: 60px;
+    background-color: rgba(255,255,255,0.1);
+    transform: skew(45deg) translateX(-50%) translateY(-300%);
+    box-shadow: 0 0 20px #7bf;
+}
+#circling article:hover .inner:before{
+    transform: skew(45deg) translateX(-100%) translateY(1800%);
+    transition: transform 1s;
+} */
+#circling article .inner .space{
+    position: relative;
+    width: 100%; height: 100%;
+    border: 1px solid rgba(255,255,255,0.75);
+    background-color: rgba(255,255,255,0.1);
+    padding: 40px;
+    opacity: 0.9;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.5s;
+    display: flex;
+    flex-wrap: wrap;
+}
+#circling article .inner .space:hover{
+    background-color: rgba(255,255,255,0.2);
+    opacity: 1;
+    /* transform: scale(1.05); */
+}
+#circling article .inner .space .web_img{
+    width: calc(50% - 10px);
+    height: 100%;
+    margin-right: -10px;
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+    background-size: 100% auto;
+    background-position: 50% 0%;
+    transition: background-position 15s linear;
+}
+
+#circling article:hover .inner .space .web_img{
+    background-position: 50% 100%;
+}
+
+#circling article .inner .space .web_info{
+    width: 50%;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+#circling article .inner .space .web_info .top{
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.75);
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+#circling article .inner .space .web_info .top h3{
+    font-size: 24px;
+}
+#circling article .inner .space .web_info .top ul{display: flex;}
+#circling article .inner .space .web_info .top ul li{margin-left: 10px;}
+#circling article .inner .space .web_info .top ul li img{
+    display: block;
+    height: 24px;
+}
+
+#circling article .inner .space .web_info .bottom{
+    padding-top: 20px;
+}
+#circling article .inner .space .web_info .bottom p{
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+#circling article .inner .space .web_info .bottom .detail_btn{
+    position: absolute;
+    width: 100%;
+    bottom: 40px; right: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+#circling article .inner .space .web_info .bottom .detail_btn a{
+    position: relative;
+    display: block;
+    width: 140px; height: 36px;
+    text-align: center;
+    color: #ddd;
+    line-height: 34px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+#circling article .inner .space .web_info .bottom .detail_btn a:before{
+    content: "";
+    display: block;
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0; left: -100%;
+    background-color: rgba(255,255,255,0.5);
+    transition: left 0.5s;
+}
+#circling article .inner .space .web_info .bottom .detail_btn:hover a:before{
+    left: 0;
+}
+
+
+
+/* 버튼 컨트롤 */
+.controlBtn{
+    position: absolute;
+    bottom: 20px; right: 20px;
+    border: 3px solid #fff;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.controlBtn img{
+    display: block;
+    height: 28px;
+    filter: invert(100%);
+}
+
+
+
+
+/* 반응형 */
+@media (max-width:767px){
+    .wrap{
+        perspective: 5000px;
+    }
+
+    #circling{
+        width: 80%;
+        height: 500px;
+    }
+    #circling article{
+        transform: rotateX(calc(45deg * var(--i))) translateZ(-750px);   
+    }
+    #circling article:hover h1{
+        transform: none;
+    }
+    #circling article .inner .space{
+        padding: 40px 20px;
+        display: block;
+    }
+    #circling article .inner .space .web_img{
+        width: 100%;
+        height: 50%;
+        margin-right: 0;
+
+    }
+    #circling article .inner .space .web_info{
+        width: 100%;
+        padding-left: 0;
+    }
+
+}
+#circling article .inner .space .web_info .bottom .detail_btn{
+    bottom: 20px; right: 20px;
+}
