@@ -24,7 +24,6 @@ body{background-color: #000; color: #ddd;}
     object-fit: cover;
     opacity: 0.75;
 }
-.bg_img{}
 .bg_img img{width: 100%; }
 
 #circling{
